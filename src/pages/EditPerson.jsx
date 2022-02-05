@@ -34,6 +34,7 @@ const EditPerson = () => {
   return (
     <div className="login-section">
       <section className="section is-small">
+      <p>Edit person details functionality is not fully done</p>
         <h2 className="subtitle">Update Person Details</h2>
         <div className="field">
           <label className="label">First Name</label>
