@@ -9,7 +9,7 @@ use `yarn start` to run the application
 * Design - Bulma UI (https://bulma.io/)
 * Router - react-router-dom
 * Auth Management - using local storage instead of API just for demo
-* Data Manupulation - React Contect API
+* Data Manipulation - React Context API
 
 ## Available Pages
 
