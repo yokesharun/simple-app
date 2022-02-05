@@ -1,27 +1,27 @@
 export default function Reducer(state, action) {
-    switch (action.type) {
-      case "ADD_PERSON":
-        return {
-          ...state,
-          persons: [...state.persons, action.payload],
-        };
-  
-      case "EDIT_PERSON":
-        const updatedPerson = action.payload;
-  
-        const updatedpersons = state.persons.map((person) => {
-          if (person.id === updatedPerson.id) {
-            return updatedPerson;
-          }
-          return person;
-        });
-  
-        return {
-          ...state,
-          persons: updatedpersons,
-        };
-  
-      default:
-        return state;
-    }
-  };
+  switch (action.type) {
+    case "ADD_PERSON":
+      return {
+        ...state,
+        persons: [...state.persons, action.payload],
+      };
+
+    case "EDIT_PERSON":
+      const data = action.payload;
+
+      const updatedData = state.persons.map((person) => {
+        if (person.id === data.id) {
+          return data;
+        }
+        return person;
+      });
+
+      return {
+        ...state,
+        persons: updatedData,
+      };
+
+    default:
+      return state;
+  }
+}

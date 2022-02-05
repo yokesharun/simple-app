@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/ContextWrapper";
 
 const EditPerson = () => {
-  const { persons } = useContext(GlobalContext);
+  let navigate = useNavigate();
+  const { persons, editPerson } = useContext(GlobalContext);
   let { id: currentID } = useParams();
   const [currentDetails, setCurrentDetails] = useState({
-    first_name: '',
-    last_name: '',
-    dob: '',
+    first_name: "",
+    last_name: "",
+    dob: "",
   });
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const findDetails = persons.find(
       (eachPerson) => eachPerson.id === parseInt(currentID)
     );
     setCurrentDetails(findDetails);
-    console.log(findDetails.dob)
+    console.log(findDetails.dob);
   }, [currentID, persons]);
 
   const getCurrentDate = () => {
@@ -31,51 +33,92 @@ const EditPerson = () => {
     return `${currentYear}-${currentMonth}-${currentDate}`;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editPerson(currentDetails);
+    setShowNotification(true);
+    setTimeout(() => {
+      // adding timeout to see the notification message functionality
+      navigate("/home");
+    }, 3000);
+  };
+
+  const handleOnChangeInput = (userKey, newValue) =>
+    setCurrentDetails({ ...currentDetails, [userKey]: newValue });
+
   return (
     <div className="login-section">
       <section className="section is-small">
-      <p>Edit person details functionality is not fully done</p>
+        {showNotification && (
+          <article class="message is-primary">
+            <div class="message-header">
+              <p>Success!</p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+              Person Details Updated!
+              <p>Redirecting to home page in 3 seconds...</p>
+            </div>
+          </article>
+        )}
         <h2 className="subtitle">Update Person Details</h2>
-        <div className="field">
-          <label className="label">First Name</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="First Name"
-              value={currentDetails.first_name}
-            />
+        <form>
+          <div className="field">
+            <label className="label">First Name</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                placeholder="First Name"
+                value={currentDetails.first_name}
+                required
+                onChange={(e) =>
+                  handleOnChangeInput("first_name", e.target.value)
+                }
+              />
+            </div>
           </div>
-          {currentDetails.first_name}
-        </div>
-        <div className="field">
-          <label className="label">Last Name</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="Last Name"
-              value={currentDetails.last_name}
-            />
+          <div className="field">
+            <label className="label">Last Name</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                placeholder="Last Name"
+                value={currentDetails.last_name}
+                required
+                onChange={(e) =>
+                  handleOnChangeInput("last_name", e.target.value)
+                }
+              />
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <label className="label">Date of Birth</label>
-          <div className="control">
-            <input
-              className="input"
-              type="date"
-              placeholder="DOB"
-              value={currentDetails.dob}
-              max={getCurrentDate()}
-            />
+          <div className="field">
+            <label className="label">Date of Birth</label>
+            <div className="control">
+              <input
+                className="input"
+                type="date"
+                placeholder="DOB"
+                value={currentDetails.dob}
+                required
+                onChange={(e) => handleOnChangeInput("dob", e.target.value)}
+                max={getCurrentDate()}
+              />
+            </div>
           </div>
-        </div>
-        <div className="submit-button">
-          <button onClick="" className="button is-dark">
-            Update Person Details
-          </button>
-        </div>
+          <div className="submit-button">
+            <button
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+              className="button is-dark"
+              type="submit"
+            >
+              Update Person Details
+            </button>
+          </div>
+        </form>
       </section>
     </div>
   );

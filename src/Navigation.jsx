@@ -12,7 +12,11 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navbar is-light" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar is-light"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <a className="navbar-item" href="#">
           <h3 className="title nav-title">Simple App</h3>

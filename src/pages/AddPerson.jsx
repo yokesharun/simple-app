@@ -53,53 +53,64 @@ const AddPerson = () => {
               <p>Success!</p>
               <button class="delete" aria-label="delete"></button>
             </div>
-            <div class="message-body">Person Details Added!
-            <p>Redirecting to home page in 3 seconds...</p></div>
+            <div class="message-body">
+              Person Details Added!
+              <p>Redirecting to home page in 3 seconds...</p>
+            </div>
           </article>
         )}
         <h2 className="subtitle">Enter Person Details</h2>
-        <div className="field">
-          <label className="label">First Name</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+        <form>
+          <div className="field">
+            <label className="label">First Name</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <label className="label">Last Name</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+          <div className="field">
+            <label className="label">Last Name</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div className="field">
-          <label className="label">Date of Birth</label>
-          <div className="control">
-            <input
-              className="input"
-              type="date"
-              placeholder="DOB"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-              max={getCurrentDate()}
-            />
+          <div className="field">
+            <label className="label">Date of Birth</label>
+            <div className="control">
+              <input
+                className="input"
+                type="date"
+                placeholder="DOB"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+                max={getCurrentDate()}
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div className="submit-button">
-          <button onClick={() => handleSubmit()} className="button is-dark">
-            Add Person
-          </button>
-        </div>
+          <div className="submit-button">
+            <button
+              onClick={() => handleSubmit()}
+              type="submit"
+              className="button is-dark"
+            >
+              Add Person
+            </button>
+          </div>
+        </form>
       </section>
     </div>
   );
