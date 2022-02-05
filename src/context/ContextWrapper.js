@@ -8,7 +8,7 @@ const initialState = {
       id: 1,
       first_name: "Dummy",
       last_name: "Dummy",
-      dob: "09/09/2008"
+      dob: "2000-09-20"
     }
   ]
 };

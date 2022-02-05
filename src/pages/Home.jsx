@@ -20,7 +20,7 @@ const Home = () => {
           <td>{person.dob}</td>
           <td>{calculateAge(new Date(person.dob))}</td>
           <td>
-            <Link to="/expenses">Edit</Link>
+            <Link to={`/edit/${i+1}`}>Edit</Link>
           </td>
         </tr>
       ))

@@ -22,7 +22,7 @@ const Navigation = () => {
       {getAuth() && (
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item" onClick={() => navigate("/")}>
+            <a className="navbar-item" onClick={() => navigate("/home")}>
               Home
             </a>
             <a className="navbar-item" onClick={() => navigate("/add")}>
