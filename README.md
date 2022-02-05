@@ -2,6 +2,8 @@
 
 Simple Application based on React JS
 
+use `yarn start` to run the application
+
 ## Packages Used
 
 * Design - Bulma UI (https://bulma.io/)
