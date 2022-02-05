@@ -18,6 +18,7 @@ use `yarn start` to run the application
 * Add Person page
 * Edit Person Page
 
+![Screenshot 2022-02-05 at 2 29 58 PM](https://user-images.githubusercontent.com/12830078/152635465-8377693e-d7c1-4ab5-914d-1596d04caf85.png)
 
 
 Thanks
