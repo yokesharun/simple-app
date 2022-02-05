@@ -13,6 +13,8 @@ const EditPerson = () => {
   });
   const [showNotification, setShowNotification] = useState(false);
 
+  const { first_name, last_name, dob } = currentDetails;
+
   useEffect(() => {
     const findDetails = persons.find(
       (eachPerson) => eachPerson.id === parseInt(currentID)
@@ -34,13 +36,16 @@ const EditPerson = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    editPerson(currentDetails);
-    setShowNotification(true);
-    setTimeout(() => {
-      // adding timeout to see the notification message functionality
-      navigate("/home");
-    }, 3000);
+    if (first_name && last_name && dob) {
+      e.preventDefault();
+
+      editPerson(currentDetails);
+      setShowNotification(true);
+      setTimeout(() => {
+        // adding timeout to see the notification message functionality
+        navigate("/home");
+      }, 3000);
+    }
   };
 
   const handleOnChangeInput = (userKey, newValue) =>
@@ -70,7 +75,7 @@ const EditPerson = () => {
                 className="input"
                 type="text"
                 placeholder="First Name"
-                value={currentDetails.first_name}
+                value={first_name}
                 required
                 onChange={(e) =>
                   handleOnChangeInput("first_name", e.target.value)
@@ -85,7 +90,7 @@ const EditPerson = () => {
                 className="input"
                 type="text"
                 placeholder="Last Name"
-                value={currentDetails.last_name}
+                value={last_name}
                 required
                 onChange={(e) =>
                   handleOnChangeInput("last_name", e.target.value)
@@ -100,7 +105,7 @@ const EditPerson = () => {
                 className="input"
                 type="date"
                 placeholder="DOB"
-                value={currentDetails.dob}
+                value={dob}
                 required
                 onChange={(e) => handleOnChangeInput("dob", e.target.value)}
                 max={getCurrentDate()}

@@ -11,18 +11,22 @@ const AddPerson = () => {
   const [dob, setDob] = useState("");
   const [showNotification, setShowNotification] = useState(false);
 
-  const handleSubmit = () => {
-    addPerson({
-      id: persons.length + 1,
-      first_name: firstName,
-      last_name: lastName,
-      dob,
-    });
-    setShowNotification(true);
-    setTimeout(() => {
-      // adding timeout to see the notification message functionality
-      navigate("/home");
-    }, 3000);
+  const handleSubmit = (e) => {
+    if (firstName && lastName && dob) {
+      e.preventDefault();
+
+      addPerson({
+        id: persons.length + 1,
+        first_name: firstName,
+        last_name: lastName,
+        dob,
+      });
+      setShowNotification(true);
+      setTimeout(() => {
+        // adding timeout to see the notification message functionality
+        navigate("/home");
+      }, 3000);
+    }
   };
 
   const getCurrentDate = () => {
@@ -103,7 +107,7 @@ const AddPerson = () => {
           </div>
           <div className="submit-button">
             <button
-              onClick={() => handleSubmit()}
+              onClick={(e) => handleSubmit(e)}
               type="submit"
               className="button is-dark"
             >
